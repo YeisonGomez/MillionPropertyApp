@@ -1,6 +1,5 @@
 import React from 'react';
 import { Typography as AntTypography } from 'antd';
-import type { TitleProps, TextProps, ParagraphProps } from 'antd/es/typography';
 import './Typography.scss';
 
 type Variant = 'h1' | 'h2' | 'h3' | 'h4' | 'body' | 'caption';
@@ -26,7 +25,7 @@ export const Typography: React.FC<TypographyProps> = ({
   if (variant === 'h1' || variant === 'h2' || variant === 'h3' || variant === 'h4') {
     const level = Number(variant.slice(1)) as 1 | 2 | 3 | 4;
     return (
-      <AntTypography.Title className={classes} level={level as TitleProps['level']}>
+      <AntTypography.Title className={classes} level={level}>
         {children}
       </AntTypography.Title>
     );
@@ -34,7 +33,7 @@ export const Typography: React.FC<TypographyProps> = ({
 
   if (variant === 'caption') {
     return (
-      <AntTypography.Text className={classes as string as TextProps['className']} type="secondary" size={12 as unknown as TextProps['size']}>
+      <AntTypography.Text className={classes} type="secondary">
         {children}
       </AntTypography.Text>
     );
@@ -42,7 +41,7 @@ export const Typography: React.FC<TypographyProps> = ({
 
   if (variant === 'body') {
     return (
-      <AntTypography.Paragraph className={classes as string as ParagraphProps['className']}>
+      <AntTypography.Paragraph className={classes}>
         {children}
       </AntTypography.Paragraph>
     );
