@@ -12,7 +12,6 @@
     "test:coverage": "vitest --coverage --run"
   },
   "dependencies": {
-    "@apollo/client": "^4.0.7",
     "antd": "^5.27.5",
     "graphql": "^16.11.0",
     "react": "^19.1.1",
@@ -21,6 +20,7 @@
     "sass": "^1.93.2"
   },
   "devDependencies": {
+    "@apollo/client": "^4.0.7",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
