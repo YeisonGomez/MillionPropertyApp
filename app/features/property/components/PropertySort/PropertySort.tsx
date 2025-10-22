@@ -12,6 +12,7 @@ export interface Props {
 
 export const PropertySort: React.FC<Props> = ({ value, onChange, className = '' }) => {
   const options = [
+    { value: 'default', label: 'Sin ordenar' },
     { value: 'name-asc', label: 'Nombre (A-Z)' },
     { value: 'name-desc', label: 'Nombre (Z-A)' },
     { value: 'price-asc', label: 'Precio (Menor a Mayor)' },

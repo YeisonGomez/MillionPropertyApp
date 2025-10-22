@@ -2,8 +2,10 @@ import React, { useMemo } from 'react';
 import { Layout, Pagination } from 'antd';
 import { Header, Typography } from '~/components';
 import { PropertyList, PropertySort } from '~/features/property/components';
+import { SEO } from '~/shared/components/SEO';
 import { useSearch } from '~/features/property/hooks';
 import { useGetAllProperties } from '~/features/property/services';
+import { env } from '~/shared/config/env';
 import './Home.scss';
 
 const { Content } = Layout;
@@ -25,6 +27,8 @@ export const Home: React.FC = () => {
   const sortedProperties = useMemo(() => {
     if (!properties || properties.length === 0) return [];
     
+    if (sortBy === 'default') return properties;
+    
     const sorted = [...properties];
     
     switch (sortBy) {
@@ -37,12 +41,19 @@ export const Home: React.FC = () => {
       case 'price-desc':
         return sorted.sort((a, b) => b.price - a.price);
       default:
-        return sorted;
+        return properties;
     }
   }, [properties, sortBy]);
 
   return (
     <Layout className="home">
+      <SEO 
+        title="Encuentra tu propiedad ideal"
+        description="Explora miles de propiedades en venta y arriendo. Busca por ubicación, precio y características. Encuentra tu hogar ideal con Million Property."
+        keywords="propiedades, bienes raíces, casas en venta, apartamentos, arriendo, compra de propiedades, inmobiliaria"
+        ogUrl={env.appUrl}
+        canonical={env.appUrl}
+      />
       <Header 
         onSearch={handleSearch}
         onPriceRangeChange={handlePriceRangeChange}

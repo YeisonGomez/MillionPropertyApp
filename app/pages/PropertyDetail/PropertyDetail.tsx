@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Layout, Button, Spin, Typography, Divider } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { useGetPropertyById } from '~/features/property/services';
+import { SEO } from '~/shared/components/SEO';
+import { env } from '~/shared/config/env';
 import { formatPriceUSD, formatDate } from '~/shared/utils';
 import propertyFallback from '~/features/property/assets/property-fallback.jpg';
 import './PropertyDetail.scss';
@@ -55,6 +57,14 @@ export const PropertyDetail: React.FC = () => {
 
   return (
     <Layout className="property-detail">
+      <SEO 
+        title={property.name}
+        description={`${property.name} en ${property.address}. Precio: ${formatPriceUSD(property.price)}. Año: ${property.year}. Encuentra más detalles sobre esta propiedad.`}
+        keywords={`${property.name}, propiedad en ${property.address}, bienes raíces, ${property.year}`}
+        ogImage={property.firstImage || propertyFallback}
+        ogUrl={`${env.appUrl}/property/${property.idProperty}`}
+        canonical={`${env.appUrl}/property/${property.idProperty}`}
+      />
       <Content className="property-detail__content">
         <div className="property-detail__container">
           <Button 
