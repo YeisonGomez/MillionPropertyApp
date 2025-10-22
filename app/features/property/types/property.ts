@@ -4,6 +4,14 @@ export interface Owner {
   photo: string;
 }
 
+export interface PropertyTrace {
+  idPropertyTrace: string;
+  dateSale: string;
+  name: string;
+  value: number;
+  tax: number;
+}
+
 export interface Property {
   idProperty: string;
   name: string;
@@ -15,6 +23,7 @@ export interface Property {
   firstImage?: string;
   owner?: Owner;
   images?: string[];
+  traces?: PropertyTrace[];
 }
 
 export interface PropertyImage {

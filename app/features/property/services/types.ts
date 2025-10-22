@@ -1,4 +1,4 @@
-import type { Property, PropertyImage } from '~/features/property/types/property';
+import type { Property, PropertyImage, PropertyTrace } from '~/features/property/types/property';
 
 export interface PaginatedPropertiesResult {
   items: Property[];
@@ -25,6 +25,7 @@ export interface GetAllPropertiesVariables {
 export interface GetPropertyByIdResponse {
   property: Property & {
     images?: string[];
+    traces?: PropertyTrace[];
   };
 }
 

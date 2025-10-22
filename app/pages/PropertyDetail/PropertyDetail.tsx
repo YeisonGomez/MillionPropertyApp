@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Layout, Button, Spin, Typography, Divider } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { useGetPropertyById } from '~/features/property/services';
-import { formatPriceUSD } from '~/shared/utils';
+import { formatPriceUSD, formatDate } from '~/shared/utils';
 import propertyFallback from '~/features/property/assets/property-fallback.jpg';
 import './PropertyDetail.scss';
 
@@ -143,6 +143,42 @@ export const PropertyDetail: React.FC = () => {
                   <Text>{property.year}</Text>
                 </div>
               </div>
+
+              {property.traces && property.traces.length > 0 && (
+                <>
+                  <Divider />
+
+                  <Title level={4}>Historial de transacciones</Title>
+                  <div className="property-detail__traces">
+                    {property.traces.map((trace) => (
+                      <div key={trace.idPropertyTrace} className="property-detail__trace-item">
+                        <div className="property-detail__trace-header">
+                          <Text strong className="property-detail__trace-name">
+                            {trace.name}
+                          </Text>
+                          <Text className="property-detail__trace-date">
+                            {formatDate(trace.dateSale)}
+                          </Text>
+                        </div>
+                        <div className="property-detail__trace-details">
+                          <div className="property-detail__trace-detail">
+                            <Text className="property-detail__trace-label">Valor:</Text>
+                            <Text strong className="property-detail__trace-value">
+                              {formatPriceUSD(trace.value)}
+                            </Text>
+                          </div>
+                          <div className="property-detail__trace-detail">
+                            <Text className="property-detail__trace-label">Impuesto:</Text>
+                            <Text className="property-detail__trace-tax">
+                              {formatPriceUSD(trace.tax)}
+                            </Text>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

@@ -47,6 +47,13 @@ export const GET_PROPERTY_BY_ID = gql`
       idOwner
       firstImage
       images
+      traces {
+        idPropertyTrace
+        dateSale
+        name
+        value
+        tax
+      }
       owner {
         idOwner
         name
