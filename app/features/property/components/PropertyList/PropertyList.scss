@@ -1,0 +1,18 @@
+.property-list {
+  &__loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 0;
+    min-height: 400px;
+  }
+
+  &__empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 0;
+    min-height: 400px;
+  }
+}
+

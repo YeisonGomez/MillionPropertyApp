@@ -1,0 +1,14 @@
+.atom-typography {
+  &--primary { 
+    color: var(--primary-color); 
+  }
+  
+  &--secondary { 
+    color: var(--text-secondary); 
+  }
+  
+  &--muted { 
+    color: #9ca3af; 
+  }
+}
+

@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0;
+  height: 200px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: linear-gradient(180deg, #ffffff 39.9%, #f8f8f8 100%);
+
+  &__brand { font-weight: 700; font-size: 18px; }
+  &__search { 
+    width: 100%;
+    max-width: 600px; 
+  }
+}
+

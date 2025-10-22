@@ -1,0 +1,1 @@
+export const PROPERTY_PAGE_SIZE = 12;
