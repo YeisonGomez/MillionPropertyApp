@@ -13,7 +13,9 @@
   }
   
   &__header {
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 40px;
   }
   
@@ -40,6 +42,9 @@
   }
   
   .home__header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
     margin-bottom: 32px;
   }
 }

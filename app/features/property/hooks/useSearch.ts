@@ -2,10 +2,13 @@ import { useState, useMemo, useCallback } from 'react';
 import type { PropertyFilters } from '../services/useQueries';
 import { PROPERTY_PAGE_SIZE } from '../constants/property';
 
+export type SortOption = 'name-asc' | 'name-desc' | 'price-asc' | 'price-desc';
+
 export const useSearch = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [minPrice, setMinPrice] = useState<number | undefined>();
   const [maxPrice, setMaxPrice] = useState<number | undefined>();
+  const [sortBy, setSortBy] = useState<SortOption>('name-asc');
   const [page, setPage] = useState(1);
   const [pageSize] = useState(PROPERTY_PAGE_SIZE);
   
@@ -52,6 +55,10 @@ export const useSearch = () => {
     setPage(newPage);
   }, []);
 
+  const handleSortChange = useCallback((newSort: SortOption) => {
+    setSortBy(newSort);
+  }, []);
+
   return {
     searchQuery,
     filters,
@@ -59,8 +66,10 @@ export const useSearch = () => {
     pageSize,
     minPrice,
     maxPrice,
+    sortBy,
     handleSearch,
     handlePriceRangeChange,
     handlePageChange,
+    handleSortChange,
   };
 };

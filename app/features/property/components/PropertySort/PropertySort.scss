@@ -1,0 +1,37 @@
+.property-sort {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &__icon {
+    font-size: 16px;
+    color: var(--text-secondary);
+  }
+
+  &__select {
+    width: 220px;
+
+    .ant-select-selector {
+      border-radius: 8px !important;
+      border-color: #e0e0e0 !important;
+      
+      &:hover {
+        border-color: var(--primary-color) !important;
+      }
+    }
+
+    &.ant-select-focused .ant-select-selector {
+      border-color: var(--primary-color) !important;
+      box-shadow: 0 0 0 2px rgba(255, 90, 95, 0.1) !important;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .property-sort {
+    &__select {
+      width: 100%;
+    }
+  }
+}
+
