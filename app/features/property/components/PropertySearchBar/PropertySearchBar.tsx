@@ -26,6 +26,7 @@ export const PropertySearchBar: React.FC<Props> = ({
   const [query, setQuery] = useState('');
   const [minValue, setMinValue] = useState<number | undefined>(minPrice);
   const [maxValue, setMaxValue] = useState<number | undefined>(maxPrice);
+  const [sliderValue, setSliderValue] = useState<[number, number]>([minPrice ?? 0, maxPrice ?? 1000000000]);
   const [filterVisible, setFilterVisible] = useState(false);
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
 
@@ -61,6 +62,10 @@ export const PropertySearchBar: React.FC<Props> = ({
   };
 
   const handleSliderChange = (value: [number, number]) => {
+    setSliderValue(value);
+  };
+
+  const handleSliderAfterChange = (value: [number, number]) => {
     const [newMin, newMax] = value;
     const finalMin = newMin === MIN_PRICE ? undefined : newMin;
     const finalMax = newMax === MAX_PRICE ? undefined : newMax;
@@ -72,18 +77,21 @@ export const PropertySearchBar: React.FC<Props> = ({
   const handleMinChange = (value: number | null) => {
     const newMin = value === null || value === MIN_PRICE ? undefined : value;
     setMinValue(newMin);
+    setSliderValue([newMin ?? MIN_PRICE, maxValue ?? MAX_PRICE]);
     onPriceRangeChange?.(newMin, maxValue);
   };
 
   const handleMaxChange = (value: number | null) => {
     const newMax = value === null || value === MAX_PRICE ? undefined : value;
     setMaxValue(newMax);
+    setSliderValue([minValue ?? MIN_PRICE, newMax ?? MAX_PRICE]);
     onPriceRangeChange?.(minValue, newMax);
   };
 
   const handleClearFilters = () => {
     setMinValue(undefined);
     setMaxValue(undefined);
+    setSliderValue([MIN_PRICE, MAX_PRICE]);
     onPriceRangeChange?.(undefined, undefined);
   };
 
@@ -105,8 +113,9 @@ export const PropertySearchBar: React.FC<Props> = ({
         range
         min={MIN_PRICE}
         max={MAX_PRICE}
-        value={[minValue ?? MIN_PRICE, maxValue ?? MAX_PRICE]}
+        value={sliderValue}
         onChange={(value) => handleSliderChange(value as [number, number])}
+        onAfterChange={(value) => handleSliderAfterChange(value as [number, number])}
         step={10000000}
         tooltip={{
           formatter: (value) => formatPriceUSD(value ?? 0),
